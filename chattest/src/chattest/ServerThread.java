@@ -16,6 +16,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 
@@ -52,7 +53,6 @@ public class ServerThread extends Thread {
     @Override
     public void run(){
         ExecutorService pool = Executors.newFixedThreadPool(500);
-        
         while(true) {
             try {
                 Socket connection = server.accept();
@@ -60,6 +60,11 @@ public class ServerThread extends Thread {
                 pool.execute(new ServerHandler(connection));
             } catch (IOException ex) {
                 Logger.getLogger(ServerThread.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NullPointerException npe){
+                System.out.println("Hello");
+                JOptionPane.showMessageDialog(null, "This port is not available, please choose something else");
+                p.ResetStatus();
+                break;
             }
         }
     }

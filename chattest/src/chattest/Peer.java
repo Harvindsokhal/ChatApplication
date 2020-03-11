@@ -381,7 +381,6 @@ public class Peer extends javax.swing.JFrame {
         }
       
     }
-
     
     public void sendMessage(String message) {
         chat_textarea.append(message + "\n");
@@ -394,6 +393,10 @@ public class Peer extends javax.swing.JFrame {
             }
         } catch(IOException e) {System.out.println(e);}
     }
-    
+
+    public void ResetStatus() {
+        username_textfield.setEditable(true);
+        user_port_textfield.setEditable(true);
+    }    
 
 }
