@@ -23,7 +23,6 @@ import javax.swing.JOptionPane;
  * @author Harvind
  */
 public class Peer extends javax.swing.JFrame {
-
     LocalTime time = LocalTime.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
     String username, address = "localhost";
@@ -45,7 +44,7 @@ public class Peer extends javax.swing.JFrame {
         try {
             sendMessage("Disconnected.");
             socket.close();
-        } catch (Exception ex) {
+        } catch(Exception ex) {
             addMessageToGUI("Failed to disconnect.");
         }
         username_textfield.setEditable(true);
