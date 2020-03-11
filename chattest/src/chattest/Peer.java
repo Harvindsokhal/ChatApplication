@@ -448,4 +448,9 @@ public class Peer extends javax.swing.JFrame {
         }
     }
 
+    public void ResetStatus() {
+        username_textfield.setEditable(true);
+        user_port_textfield.setEditable(true);
+    }    
+
 }
