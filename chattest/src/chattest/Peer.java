@@ -5,6 +5,7 @@
  */
 package chattest;
 
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -23,6 +24,7 @@ import javax.swing.JOptionPane;
  * @author Harvind
  */
 public class Peer extends javax.swing.JFrame {
+
     LocalTime time = LocalTime.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
     String username, address = "localhost";
@@ -40,28 +42,18 @@ public class Peer extends javax.swing.JFrame {
         initComponents();
     }
 
-    public void Disconnect() {
-        try {
-            sendMessage("Disconnected.");
-            socket.close();
-        } catch(Exception ex) {
-            addMessageToGUI("Failed to disconnect.");
-        }
-        username_textfield.setEditable(true);
-    }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        Foundation_Panel = new javax.swing.JPanel();
+        Userlisl_Panel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         users_online_textarea = new javax.swing.JTextArea();
         users_online_button = new javax.swing.JButton();
         disconnect_button = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        MainChat_Panel = new javax.swing.JPanel();
         connect_button = new javax.swing.JButton();
         peer_port_textfield = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -100,33 +92,33 @@ public class Peer extends javax.swing.JFrame {
 
         disconnect_button.setText("Disconnect");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout Userlisl_PanelLayout = new javax.swing.GroupLayout(Userlisl_Panel);
+        Userlisl_Panel.setLayout(Userlisl_PanelLayout);
+        Userlisl_PanelLayout.setHorizontalGroup(
+            Userlisl_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Userlisl_PanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(Userlisl_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Userlisl_PanelLayout.createSequentialGroup()
+                        .addGroup(Userlisl_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(users_online_button, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(Userlisl_PanelLayout.createSequentialGroup()
+                                .addComponent(users_online_button, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(disconnect_button, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(disconnect_button, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        Userlisl_PanelLayout.setVerticalGroup(
+            Userlisl_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Userlisl_PanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(Userlisl_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(users_online_button, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(disconnect_button, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -178,56 +170,56 @@ public class Peer extends javax.swing.JFrame {
 
         jLabel3.setText("IP Address:");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout MainChat_PanelLayout = new javax.swing.GroupLayout(MainChat_Panel);
+        MainChat_Panel.setLayout(MainChat_PanelLayout);
+        MainChat_PanelLayout.setHorizontalGroup(
+            MainChat_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MainChat_PanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(MainChat_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainChat_PanelLayout.createSequentialGroup()
                         .addComponent(send_textfield)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(send_button, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MainChat_PanelLayout.createSequentialGroup()
+                        .addGroup(MainChat_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(username_label)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(MainChat_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(MainChat_PanelLayout.createSequentialGroup()
                                 .addComponent(username_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel1))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(MainChat_PanelLayout.createSequentialGroup()
                                 .addComponent(hostname_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel2)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(MainChat_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(MainChat_PanelLayout.createSequentialGroup()
                                 .addComponent(user_port_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(start_button, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(MainChat_PanelLayout.createSequentialGroup()
                                 .addComponent(peer_port_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(connect_button, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        MainChat_PanelLayout.setVerticalGroup(
+            MainChat_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MainChat_PanelLayout.createSequentialGroup()
                 .addGap(5, 5, 5)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(MainChat_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(user_port_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(start_button, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(username_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(username_label))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(MainChat_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(hostname_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
@@ -236,41 +228,42 @@ public class Peer extends javax.swing.JFrame {
                 .addGap(9, 9, 9)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(MainChat_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(send_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(send_button, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout Foundation_PanelLayout = new javax.swing.GroupLayout(Foundation_Panel);
+        Foundation_Panel.setLayout(Foundation_PanelLayout);
+        Foundation_PanelLayout.setHorizontalGroup(
+            Foundation_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Foundation_PanelLayout.createSequentialGroup()
+                .addComponent(Userlisl_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(MainChat_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        Foundation_PanelLayout.setVerticalGroup(
+            Foundation_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Userlisl_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(MainChat_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Foundation_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Foundation_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
 
     private void users_online_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_users_online_buttonActionPerformed
         showUsers();
@@ -292,11 +285,12 @@ public class Peer extends javax.swing.JFrame {
             try {
                 server = new ServerThread(this);
                 server.start();
-                JOptionPane.showMessageDialog(null, "Empty Server Running");
+                users_online_textarea.append(username_textfield.getText());
                 start_button.setEnabled(false);
-//                chat_textarea.setText("Started connection \n");
+                chat_textarea.setText("Empty Server Running \n");
             } catch (Exception ex) {
                 Logger.getLogger(Peer.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("error");
             }
         }
     }//GEN-LAST:event_start_buttonActionPerformed
@@ -321,9 +315,10 @@ public class Peer extends javax.swing.JFrame {
                 PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
                 ArrayList<String> names = server.getList();
                 if (names.contains(username)) {
-                    chat_textarea.append("User alreaady eixsts enter a unique name");
+                    JOptionPane.showMessageDialog(null, "Username Already Taken");
+//                    chat_textarea.append("User alreaady eixsts enter a unique name");
                     username_textfield.setEditable(true);
-                    user_port_textfield.setEditable(true);
+//                    user_port_textfield.setEditable(true);
                     socket.close();
                 } else {
                     users.add(socket);
@@ -345,6 +340,32 @@ public class Peer extends javax.swing.JFrame {
     private void peer_port_textfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_peer_port_textfieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_peer_port_textfieldActionPerformed
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    protected javax.swing.JPanel Foundation_Panel;
+    protected javax.swing.JPanel MainChat_Panel;
+    protected javax.swing.JPanel Userlisl_Panel;
+    protected javax.swing.JTextArea chat_textarea;
+    protected javax.swing.JButton connect_button;
+    protected javax.swing.JButton disconnect_button;
+    protected javax.swing.JTextField hostname_textfield;
+    protected javax.swing.JLabel jLabel1;
+    protected javax.swing.JLabel jLabel2;
+    protected javax.swing.JLabel jLabel3;
+    protected javax.swing.JLabel jLabel4;
+    protected javax.swing.JScrollPane jScrollPane1;
+    protected javax.swing.JScrollPane jScrollPane3;
+    protected javax.swing.JTextField peer_port_textfield;
+    protected javax.swing.JButton send_button;
+    protected javax.swing.JTextField send_textfield;
+    protected javax.swing.JButton start_button;
+    protected javax.swing.JTextField user_port_textfield;
+    protected javax.swing.JLabel username_label;
+    protected javax.swing.JTextField username_textfield;
+    protected javax.swing.JButton users_online_button;
+    protected javax.swing.JTextArea users_online_textarea;
+    // End of variables declaration//GEN-END:variables
 
     /**
      * @param args the command line arguments
@@ -384,31 +405,15 @@ public class Peer extends javax.swing.JFrame {
         });
     }
 
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea chat_textarea;
-    private javax.swing.JButton connect_button;
-    private javax.swing.JButton disconnect_button;
-    private javax.swing.JTextField hostname_textfield;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    protected javax.swing.JPanel jPanel1;
-    protected javax.swing.JPanel jPanel2;
-    protected javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField peer_port_textfield;
-    private javax.swing.JButton send_button;
-    private javax.swing.JTextField send_textfield;
-    private javax.swing.JButton start_button;
-    private javax.swing.JTextField user_port_textfield;
-    private javax.swing.JLabel username_label;
-    private javax.swing.JTextField username_textfield;
-    private javax.swing.JButton users_online_button;
-    private javax.swing.JTextArea users_online_textarea;
-    // End of variables declaration//GEN-END:variables
+    public void Disconnect() {
+        try {
+            sendMessage("Disconnected.");
+            socket.close();
+        } catch (Exception ex) {
+            addMessageToGUI("Failed to disconnect.");
+        }
+        username_textfield.setEditable(true);
+    }
 
     public void addMessageToGUI(String message) {
         chat_textarea.append(message + "\n");
@@ -428,7 +433,7 @@ public class Peer extends javax.swing.JFrame {
     public void showUsers() {
         ArrayList<String> names = server.getList();
         for (String name : names) {
-            users_online_textarea.setText(name + "\n");
+            users_online_textarea.append(name + "\n");
             users_online_textarea.revalidate();
         }
 
@@ -451,6 +456,6 @@ public class Peer extends javax.swing.JFrame {
     public void ResetStatus() {
         username_textfield.setEditable(true);
         user_port_textfield.setEditable(true);
-    }    
+    }
 
 }
